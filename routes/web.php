@@ -24,3 +24,4 @@ Route::get('/admin', 'Admin@index')->name('admin');
 //Medicine Module
 Route::resource('/company','CompanyController');
 Route::resource('/catagory','CatagoryController');
+Route::resource('/desk','DeskController');
