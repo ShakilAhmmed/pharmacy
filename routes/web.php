@@ -25,3 +25,4 @@ Route::get('/admin', 'Admin@index')->name('admin');
 Route::resource('/company','CompanyController');
 Route::resource('/catagory','CatagoryController');
 Route::resource('/desk','DeskController');
+Route::resource('/medicine','MedicineController');

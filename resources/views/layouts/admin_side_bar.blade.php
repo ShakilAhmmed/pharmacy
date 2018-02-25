@@ -22,7 +22,16 @@
                           <li><i class="far fa-registered"></i><a href="/company">Brand/Company</a></li>
                             <li><i class="fa fa-id-badge"></i><a href="/catagory">Medicine Catagory</a></li>
                          <li><i class="fa fa-id-badge"></i><a href="/desk">Desk Management</a></li>
-                            <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Manage Medicine</a></li>
+                            <li><i class="fa fa-bars"></i><a href="/medicine">Manage Medicine</a></li>
+                        </ul>
+                    </li>
+
+                     <h3 class="menu-title">Purcase</h3><!-- /.menu-title -->
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Purcase Medicine</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Purcase</a></li>
                         </ul>
                     </li>
 
@@ -36,14 +45,7 @@
                             <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Staff</a></li>
                         </ul>
                     </li>
-                      <h3 class="menu-title">Purcase</h3><!-- /.menu-title -->
 
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Purcase</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Purcase</a></li>
-                        </ul>
-                    </li>
 
                         <h3 class="menu-title">Expense</h3><!-- /.menu-title -->
 
