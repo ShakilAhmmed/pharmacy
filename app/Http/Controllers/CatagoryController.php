@@ -84,7 +84,8 @@ class CatagoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $catagory_data=CatagoryModel::find($id);
+        return view('Admin.Medicine.Edit.catagory_edit',['catagory_data'=>$catagory_data]);
     }
 
     /**
@@ -96,7 +97,12 @@ class CatagoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+          $catagory=new CatagoryModel;
+            $request_data=$request->all();
+            $catagory->find($id)->fill($request_data)->save();
+            Session::flash('success','Catagory Updated Successfully');
+            return back();
+        
     }
 
     /**
