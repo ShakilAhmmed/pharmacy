@@ -4,7 +4,7 @@
 @section('main_content')
  <div class="container">
   <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-success create"  style="float: right;" data-toggle="modal" data-target="#myModal">Add New Company</button><br/><br/><br/>
+  <button type="button" class="btn btn-info create"  style="float: right;margin-right: -95px;" data-toggle="modal" data-target="#myModal">Add New Company</button><br/><br/><br/>
    <style type="text/css">
         .create{    
         	   background: #666;

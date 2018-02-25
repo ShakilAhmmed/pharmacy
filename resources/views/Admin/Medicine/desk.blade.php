@@ -4,7 +4,7 @@
 @section('main_content')
  <div class="container">
   <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info create"  style="float: right;margin-right: -95px;" data-toggle="modal" data-target="#myModal">Add New Catagory</button><br/><br/><br/>
+  <button type="button" class="btn btn-info create"  style="float: right;margin-right: -95px;" data-toggle="modal" data-target="#myModal">Add New Desk</button><br/><br/><br/>
    <style type="text/css">
         .create{    
         	   background: #666;
@@ -60,7 +60,7 @@
     <div class="modal-dialog">
     
       <!-- Modal content-->
-       {{Form::open(['url'=>'/catagory','method'=>'post'])}}
+       {{Form::open(['url'=>'/desk','method'=>'post'])}}
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -68,25 +68,25 @@
         <div class="modal-body">
 
         <div class="form-group">
-	      <label class="control-label col-sm-6" for="company_name">Catagory Name:</label>
+	      <label class="control-label col-sm-6" for="company_name">Desk Name:</label>
 	      <div class="col-sm-10">
-	      {{Form::text('catagory_name','',['class'=>'form-control','id'=>'catagory_name','title'=>'catagory_name'])}}
+	      {{Form::text('desk_name','',['class'=>'form-control','id'=>'desk_name','title'=>'desk_name'])}}
 	      </div>
         </div>
 
         <div class="form-group">
-	      <label class="control-label col-sm-6" for="company_address">Catagory Description:</label>
-	      <div class="col-sm-10">
-	      {{Form::textarea('catagory_description','',['class'=>'form-control','id'=>'catagory_description','title'=>'catagory_description','cols'=>'4','rows'=>'4'])}}
-	      </div>
+        <label class="control-label col-sm-6" for="company_name">Desk Code:</label>
+        <div class="col-sm-10">
+        {{Form::text('desk_code','',['class'=>'form-control','id'=>'desk_code','title'=>'desk_code'])}}
         </div>
-         <div class="form-group">
-	      <label class="control-label col-sm-6" for="email">Catagory Status:</label>
-	      <div class="col-sm-10">
-	       {{Form::select('catagory_status',['Active'=>'Active','Inactive'=>'Inactive'],null,['class'=>'form-control','title'=>'catagory_status'])}}
-	      </div>
         </div>
 
+        <div class="form-group">
+	      <label class="control-label col-sm-6" for="company_address">Desk Description:</label>
+	      <div class="col-sm-10">
+	      {{Form::textarea('desk_description','',['class'=>'form-control','id'=>'desk_description','title'=>'desk_description','cols'=>'4','rows'=>'4'])}}
+	      </div>
+        </div>
 
         </div>
         <div class="modal-footer">
@@ -105,48 +105,30 @@
                    <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Catagory Data Table</strong>
+                            <strong class="card-title">Desk Data Table</strong>
                         </div>
                         <div class="card-body">
                   <table id="bootstrap-data-table" class="table table-striped table-bordered">
                     <thead>
                       <tr>
                         <th>Sl No</th>
-                        <th>Catagory Name</th>
-                        <th>Catagory Description</th>
-                        <th>Catagory Status</th>
+                        <th>Desk Name</th>
+                        <th>Desk Code</th>
+                        <th>Desk Description</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                       @foreach($catagory_data as $key=>$catagory_data_value)
+                       @foreach($desk_data as $key=>$desk_data_value)
                         <td>{{$key+1}}</td>
-                        <td>{{$catagory_data_value->catagory_name}}</td>
-                        <td>{{$catagory_data_value->catagory_description}}</td>
+                        <td>{{$desk_data_value->desk_name}}</td>
+                        <td>{{$desk_data_value->desk_code}}</td>
                         <td>
-                         @if($catagory_data_value->catagory_status=='Active')
-                          <span style="color: green;">{{$catagory_data_value->catagory_status}}</span>
-                         @else
-                          <span style="color: red;">{{$catagory_data_value->catagory_status}}</span>
-                         @endif
+                          {{$desk_data_value->desk_description}}
                          </td>
-                        <td style="display: inline-flex;">
-                          {{Form::open(['url'=>"/catagory/$catagory_data_value->catagory_id/edit",'method'=>'GET'])}}
-                           {{Form::submit('EDIT',['class'=>'btn btn-primary'])}}
-                          {{Form::close()}}
-                          
-                          @if($catagory_data_value->catagory_status=='Active')
-                          {{Form::open(['url'=>"/catagory/$catagory_data_value->catagory_id",'method'=>'GET'])}}
-                           {{Form::submit('INACTIVE',['class'=>'btn btn-warning'])}}
-                          {{Form::close()}}
-                          @else
-                           {{Form::open(['url'=>"/catagory/$catagory_data_value->catagory_id",'method'=>'GET'])}}
-                           {{Form::submit('ACTIVE',['class'=>'btn btn-success'])}}
-                          {{Form::close()}}
-                          @endif
-
-                          {{Form::open(['url'=>"/catagory/$catagory_data_value->catagory_id",'method'=>'DELETE'])}}
+                        <td>
+                          {{Form::open(['url'=>"/desk/$desk_data_value->desk_id",'method'=>'DELETE'])}}
                            {{Form::submit('DELETE',['class'=>'btn btn-danger','onclick'=>'return checkdelete()'])}}
                           {{Form::close()}}
                         </td>

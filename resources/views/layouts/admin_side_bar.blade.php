@@ -21,6 +21,7 @@
                         <ul class="sub-menu children dropdown-menu">
                           <li><i class="far fa-registered"></i><a href="/company">Brand/Company</a></li>
                             <li><i class="fa fa-id-badge"></i><a href="/catagory">Medicine Catagory</a></li>
+                         <li><i class="fa fa-id-badge"></i><a href="/desk">Desk Management</a></li>
                             <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Manage Medicine</a></li>
                         </ul>
                     </li>
