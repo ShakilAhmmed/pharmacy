@@ -13,7 +13,7 @@ class CompanyModel extends Model
     public function rules()
     {
     	return [
-                'company_name'=>'required|max:50',
+                'company_name'=>'required|max:50|unique:company',
                 'company_phone'=>'required|max:14',
                 'company_email'=>'required|unique:company',
                 'company_address'=>'required',

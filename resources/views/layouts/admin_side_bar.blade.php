@@ -20,7 +20,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Medicine</a>
                         <ul class="sub-menu children dropdown-menu">
                           <li><i class="far fa-registered"></i><a href="/company">Brand/Company</a></li>
-                            <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Medicine Catagory</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="/catagory">Medicine Catagory</a></li>
                             <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Manage Medicine</a></li>
                         </ul>
                     </li>
