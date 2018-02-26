@@ -72,7 +72,7 @@ class CatagoryController extends Controller
         {
             $catagory_data->update(['catagory_status'=>'Active']);
         }
-        Session::flash('success','Catagory Status Changed');
+        Session::flash('success',"$catagory_data->catagory_name 's Status Changed");
         return back();
     }
 
