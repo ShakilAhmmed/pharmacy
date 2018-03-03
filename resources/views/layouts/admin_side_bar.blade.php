@@ -33,7 +33,7 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/purcase">Purcase</a></li>
                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/purcase/create">Purcase Report</a></li>
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/purcase">Rest Report</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/rest_report">Rest Report</a></li>
                         </ul>
                     </li>
 
