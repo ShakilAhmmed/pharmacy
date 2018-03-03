@@ -111,6 +111,13 @@ class PurcaseController extends Controller
       Session::flash('success',"You Pay $request->now_pay Tk Successfully");
       return back();
    }
+
+   public function rest_report()
+   {
+        $rest_data=PurcaseModel::join('medicine','medicine.medicine_code','=','purcase.medicine_code')->where('rest','>',0)->get();
+        return view('Admin.Purcase.rest_report',['rest_data'=>$rest_data]);
+
+   }
     /**
      * Remove the specified resource from storage.
      *
