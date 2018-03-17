@@ -36,6 +36,18 @@
                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/rest_report">Rest Report</a></li>
                         </ul>
                     </li>
+                    <h3 class="menu-title">Sales</h3><!-- /.menu-title -->
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Sale</a>
+                        <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-fort-awesome"></i><a href="
+                        /whole_sale">Whole Sale</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Invoice</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Payments</a></li>
+                            
+                        </ul>
+                    </li>
 
                     <h3 class="menu-title">User</h3><!-- /.menu-title -->
 
@@ -57,16 +69,7 @@
                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Expense</a></li>
                         </ul>
                     </li>
-                     <h3 class="menu-title">Sales</h3><!-- /.menu-title -->
-
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Sales</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Invoice</a></li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Payments</a></li>
-                            
-                        </ul>
-                    </li>
+                     
                      <h3 class="menu-title">Report</h3><!-- /.menu-title -->
 
                     <li class="menu-item-has-children dropdown">

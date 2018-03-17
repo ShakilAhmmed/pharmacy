@@ -32,3 +32,6 @@ Route::post('/medicine_data','PurcaseController@medicine');
 Route::post('/medicine_name','PurcaseController@medicine_name');
 Route::post('/purcase_update','PurcaseController@purcase_update');
 Route::get('/rest_report','PurcaseController@rest_report');
+//Sale
+Route::resource('/whole_sale','WholeSaleController');
+Route::get('/medicine_data_sale','WholeSaleController@medicine_data_sale');
