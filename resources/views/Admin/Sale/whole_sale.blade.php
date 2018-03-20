@@ -52,44 +52,43 @@
         <br>
   </div>
   <br>
+  <div class="msg" style="float: right;margin-top: -76px;margin-right: 229px;height: 76px;width: 232px;text-align: center;"></div>
   <div class="container">
   <div>
    <div style="display: inline-flex;">
           <div class="view" style="height: 39px;">MEDICINE NAME</div>
           <div class="view" style="height: 39px;">PRICE</div>
           <div class="view" style="height: 39px;">QUANTITY</div>
+          <div class="view" style="height: 39px;">SUB TOTAL</div>
           <div class="view" style="height: 39px;">ADD MORE FILEDS</div>
     </div>
     <br>
-    <div>
-    <div class="col-sm-2">
-      <select class="form-control medicine_name"  style="width: 203px;">
-      <option>--select--</option>
-      @foreach($medicine_data as $medicine_data_value) 
-        <option>{{$medicine_data_value->medicine_name}}</option>
-      @endforeach
-      </select>
-    </div>
-    <div class="col-sm-2">
-      <select class="form-control" style="width: 203px;margin-left: 28px;">
-        <option>sss</option>
-      </select>
-    </div>
-    <div class="col-sm-2">
-      <select class="form-control" style="width: 203px;margin-left: 61px;">
-        <option>sss</option>
-      </select>
-    </div>
-     <div class="col-sm-6">
-      <button class="btn btn-success add_field_button" style="width: 195px;margin-left: 98px;">
-      Add More Fileds
-      </button>
-    </div>
-    <div class="input_fields_wrap">
-      <br><br>
-    </div>
-     </div>
-      
+    <table>
+      <tr>
+       <td>
+       @php $medicine_data_array=[''=>'--select--'] @endphp
+        @foreach($medicine_data as $medicine_data_value)
+          @php 
+            $medicine_data_array[$medicine_data_value->medicine_code]=$medicine_data_value->medicine_name
+          @endphp
+        @endforeach
+        {{Form::select('medicine_name',$medicine_data_array,null,['class'=>'form-control medicine_name','style'=>'margin-left: 20px;width: 194px;'])}}
+      </td>
+      <td>
+        <input type='text' class='form-control price' readonly='readonly' style='margin-left: 21px;width: 194px;'/>
+      </td>
+      <td>
+        <input type='text' class='form-control quantity' style='margin-left: 21px;width: 194px;'/>
+      </td>
+      <td>
+        <input type='text' class='form-control subtotal' readonly='readonly' style='margin-left: 21px;width: 194px;'/>
+      </td>
+      <td>
+      <button class="btn btn-success add_field_button" style="width: 196px;margin-left: 21px;">Add More Filed</button>
+      </td>
+     </tr>
+    </table>
+    <div class="input_fields_wrap"></div>
     
      
    
@@ -118,24 +117,6 @@ reader.readAsDataURL(input.files[0]);
 }
 
 $(document).ready(function() {
-   // $.ajax({
-   //   url:'/medicine_data_sale',
-   //   type:"GET",
-   //   success:function(data){
-   //    console.log(data);
-   //    if(data[0])
-   //    {
-   //      $(".medicine_name").append("<option>--select--</option>");
-   //      for(var i=0;i<=data.length;i++)
-   //      {
-   //        $(".medicine_name").append("<option>"+data[i].medicine_name+"</option>");
-   //      }
-   //    }
-   //   }
-
-   // });
-
-
 
     var max_fields      = 10; //maximum input boxes allowed  <div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>
     var wrapper         = $(".input_fields_wrap"); //Fields wrapper
@@ -146,36 +127,70 @@ $(document).ready(function() {
         e.preventDefault();
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
-            $(wrapper).append("<div class='col-sm-12' style='line-height: 40px;'><div class='col-sm-2'>\
-                  <select class='form-control medicine_name'  style='width: 203px;margin-left: -16px;'>\
-                   <option>--select--</option>\
-                      @foreach($medicine_data as $medicine_data_value)\
-                        <option>{{$medicine_data_value->medicine_name}}</option>\
-                      @endforeach\
-                    </select>\
-                </div>\
-                <div class='col-sm-2'>\
-                  <select class='form-control'  style='width: 203px;margin-left: 22px;'>\
-                      <option>sss</option>\
-                    </select>\
-                </div>\
-                <div class='col-sm-2'>\
-                  <select class='form-control'  style='width: 203px;margin-left: 58px;'>\
-                      <option>sss</option>\
-                    </select>\
-                </div>\
-                  <button class='btn btn-danger remove_field' style='width: 195px;margin-left: 113px;'>Remove</button>\
-             </div>"); //add input box
+            $(wrapper).append("<div style='line-height: 40px;'>\
+              <table style='margin-top: -37px;'>\
+             <tr>\
+              <td>\
+                 <select class='form-control medicine_name' style='margin-left: 20px;width: 194px;'>\
+                  <option>--select--</option>\
+                   @foreach($medicine_data as $medicine_data_value)\
+                   <option value='{{$medicine_data_value->medicine_code}}'>{{$medicine_data_value->medicine_name}}</option>\
+                   @endforeach\
+                 </select>\
+              </td>\
+              <td>\
+                 <input type='text' class='form-control price' readonly='readonly' style='margin-left: 21px;width: 194px;'/>\
+              </td>\
+               <td>\
+                <input type='text' class='form-control quantity'  style='margin-left: 21px;width: 194px;'/>\
+              </td>\
+              <td>\
+                <input type='text' class='form-control subtotal'  readonly='readonly' style='margin-left: 21px;width: 194px;'/>\
+              </td>\
+              </tr>\
+             <button class='btn btn-danger remove_field' style='width: 195px;margin-left: 882px;'>Remove</button>\
+             </table>\</div>"); //add input box
         }
     });
     
     $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
         e.preventDefault(); $(this).parent('div').remove(); x--;
     })
+        
+    $(document).on('change','.medicine_name',function(){
+        var medicine_code=$(this).val()
+        var row = $(this).closest("tr");
+               
 
-    $(".medicine_name").change(function(){
-        alert("working");
-    });
+       $.ajax({
+          url:'/medicine_price',
+          type:'post',
+          data:{'medicine_code':medicine_code,'_token': $('input[name=_token]').val()},
+          success:function(data){
+            if(data)
+            {
+              row.find(".price").val(data.whole_sell_price);
+              $(".msg").html("<font style='color:green;'>"+data.total_stock+" MEDICINE IN STOCK</font>");
+            }
+            else
+            {
+              $(".msg").html("<font style='color:red;'>MEDICINE IS OUT OF STOCK</font>");
+            }
+
+          }
+
+       });
+     
+  }); 
+
+  $(document).on('keyup','.quantity',function(){
+      var price_row = $(this).closest("tr").find(".price");
+      var price=parseInt(price_row.val());
+      var quantity=parseInt($(this).val());
+      var subtotal=parseInt(price*quantity);
+      $(this).closest("tr").find(".subtotal").val(subtotal);
+  });
+
 });
 
 

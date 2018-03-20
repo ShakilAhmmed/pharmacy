@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\MedicineModel;
 use App\CompanyModel;
 use App\PurcaseModel;
+use App\StockModel;
 use Validator;
 use Session;
 use Redirect;
@@ -59,6 +60,19 @@ class PurcaseController extends Controller
         }
         else
         {
+            $stock=new StockModel;
+            $prev_data=$stock::where('medicine_code',$request->medicine_code)->first();
+                    if($prev_data)
+                    {
+                        $total_stock=$prev_data->total_stock+$request->quantity;
+                        $prev_data->update(['total_stock'=>$total_stock]);
+                    }
+                    else
+                    {
+                        $stock->medicine_code=$request->medicine_code;
+                        $stock->total_stock=$request->quantity;
+                        $stock->save();
+                    }
             $request_data=$request->all();
             $request_data=array_add($request_data,'purcase_id',time());
             $purcase->fill($request_data)->save();

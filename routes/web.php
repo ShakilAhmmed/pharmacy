@@ -35,3 +35,4 @@ Route::get('/rest_report','PurcaseController@rest_report');
 //Sale
 Route::resource('/whole_sale','WholeSaleController');
 Route::get('/medicine_data_sale','WholeSaleController@medicine_data_sale');
+Route::post('/medicine_price','WholeSaleController@medicine_price');
