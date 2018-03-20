@@ -19,7 +19,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Medicine</a>
                         <ul class="sub-menu children dropdown-menu">
-                          <li><i class="far fa-registered"></i><a href="/company">Brand/Company</a></li>
+                          <li><i class="far fa-building"></i><a href="/company">Brand/Company</a></li>
                             <li><i class="fa fa-id-badge"></i><a href="/catagory">Medicine Catagory</a></li>
                          <li><i class="fa fa-id-badge"></i><a href="/desk">Desk Management</a></li>
                             <li><i class="fa fa-bars"></i><a href="/medicine">Manage Medicine</a></li>
@@ -34,6 +34,14 @@
                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/purcase">Purcase</a></li>
                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/purcase/create">Purcase Report</a></li>
                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/rest_report">Rest Report</a></li>
+                        </ul>
+                    </li>
+                   <h3 class="menu-title">Stock</h3><!-- /.menu-title -->
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Stock Report</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/whole_sale/create">Stock</a></li>
                         </ul>
                     </li>
                     <h3 class="menu-title">Sales</h3><!-- /.menu-title -->
