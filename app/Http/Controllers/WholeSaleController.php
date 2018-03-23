@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\MedicineModel;
 use App\StockModel;
+use App\WholeSaleModel;
+use App\WholeSaleChildModel;
+use Validator;
+use Session;
 
 class WholeSaleController extends Controller
 {
@@ -26,7 +30,7 @@ class WholeSaleController extends Controller
 
     public function medicine_price(Request $request)
     {
-        return MedicineModel::join('stock','stock.medicine_code','=','medicine.medicine_code')->where('medicine.medicine_code',$request->medicine_code)->first();
+        return      MedicineModel::join('stock','stock.medicine_code','=','medicine.medicine_code')->where('medicine.medicine_code',$request->medicine_code)->first();
         //return MedicineModel::where('medicine_code',$request->medicine_code)->first();
     }
 
@@ -49,8 +53,31 @@ class WholeSaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
+
+    public function sale(Request $request)
+    {
+          $whole_sale_child=new WholeSaleChildModel;
+          $whole_sale_child->date=$request->date;
+          $whole_sale_child->patient_name=$request->patient_name;
+          $whole_sale_child->invoice_id=$request->invoice_id;
+          $whole_sale_child->grand_total=$request->grand_total;
+          $whole_sale_child->payment=$request->payment;
+          $whole_sale_child->save();
+
+          for($i=0;$i<count($request->medicine_code);$i++)
+          {
+              $whole_sale=new WholeSaleModel;
+                  $stock=StockModel::where('medicine_code',$request->medicine_code[$i])->first();
+                  $stock_update=$stock->total_stock-$request->quantity[$i];
+                  $stock->update(['total_stock'=>$stock_update]);
+              $whole_sale->medicine_code=$request->medicine_code[$i];
+              $whole_sale->quantity=$request->quantity[$i];
+              $whole_sale->invoice_id=$request->invoice_id;
+              $whole_sale->save();
+          }
+  }
 
     /**
      * Display the specified resource.

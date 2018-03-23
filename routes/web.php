@@ -20,7 +20,8 @@ Auth::routes();
 
 Route::get('/admin', 'Admin@index')->name('admin');
 
-
+//PDF
+Route::get('/catagory_pdf','PdfController@catagory_pdf');
 //Medicine Module
 Route::resource('/company','CompanyController');
 Route::resource('/catagory','CatagoryController');
@@ -36,3 +37,4 @@ Route::get('/rest_report','PurcaseController@rest_report');
 Route::resource('/whole_sale','WholeSaleController');
 Route::get('/medicine_data_sale','WholeSaleController@medicine_data_sale');
 Route::post('/medicine_price','WholeSaleController@medicine_price');
+Route::post('/sale','WholeSaleController@sale');
