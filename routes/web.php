@@ -35,6 +35,11 @@ Route::post('/purcase_update','PurcaseController@purcase_update');
 Route::get('/rest_report','PurcaseController@rest_report');
 //Sale
 Route::resource('/whole_sale','WholeSaleController');
+Route::resource('/whole_sale_report','WholeSaleReport');
 Route::get('/medicine_data_sale','WholeSaleController@medicine_data_sale');
 Route::post('/medicine_price','WholeSaleController@medicine_price');
 Route::post('/sale','WholeSaleController@sale');
+Route::post('/invoice_data','WholeSaleReport@invoice_data');
+
+//Customer
+Route::resource('/customer','CustomerController');
