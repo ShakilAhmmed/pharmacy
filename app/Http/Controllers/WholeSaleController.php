@@ -41,7 +41,7 @@ class WholeSaleController extends Controller
      */
     public function create()
     {
-        $data=StockModel::join('medicine','medicine.medicine_code','=','stock.medicine_code')->get();
+        $data=MedicineModel::join('stock','stock.medicine_code','=','medicine.medicine_code')->get();
         return view('Admin.Purcase.stock_report',['report_data'=>$data]);
     }
 

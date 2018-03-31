@@ -3,7 +3,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="{{asset('admin_asset/assets/js/plugins.js')}}"></script>
     <script src="{{asset('admin_asset/assets/js/main.js')}}"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="https://use.fontawesome.com/c6a0be9dda.js"></script>
     <script src="{{asset('admin_asset/assets/js/lib/chart-js/Chart.bundle.js')}}"></script>
     <script src="{{asset('admin_asset/assets/js/dashboard.js')}}"></script>
     <script src="{{asset('admin_asset/assets/js/widgets.js')}}"></script>
@@ -39,7 +39,7 @@
     <script src="{{asset('admin_asset/assets/js/lib/data-table/buttons.html5.min.js')}}"></script>
     <script src="{{asset('admin_asset/assets/js/lib/data-table/buttons.print.min.js')}}"></script>
     <script src="{{asset('admin_asset/assets/js/lib/data-table/buttons.colVis.min.js')}}"></script>
-    <script src="{{asset('admin_asset/assets/js/lib/data-table/datatables-init.js')}}"></script>    
+    <script src="{{asset('admin_asset/assets/js/lib/data-table/datatables-init.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
           $('#bootstrap-data-table-export').DataTable();

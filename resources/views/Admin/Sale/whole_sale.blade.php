@@ -38,6 +38,12 @@
       height: 205px;
       width: 436px;
   }
+  .details_data
+  {
+    float: right;
+    height: 151PX;
+    width: 436px;
+  }
   </style>
 
 <div class="container">
@@ -229,8 +235,61 @@
 
 
 </div>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+
+    <div class="modal-content invoice"  style="width: 765px;">
+        <div id="printableArea">
+      <div class="modal-body">
+         <div class="col-sm-12">
+           <div class="col-sm-6">
+            <h3 style="font-family: initial;font-style: inherit;font-size:42px;">INVOICE</h3>
+          </div>
+          <div class="col-sm-6">
+            <img src="{{asset('admin_asset/images/blood.png')}}" style="margin-top: -69px;float: right;">
+          </div>
+         </div>
+         <div class="col-sm-12"  style="margin-top: -78px;">
+              <p style="font-size: 20px;">BANGLADESH MEDICIAL HALL</p>
+         </div>
+         <div class="col-sm-12">
+              <p style="font-size: 13px;margin-top: -53px;">ADDRESS: UKIL PARA, FENI BANGLADESH</p>
+         </div>
+         <br>
+         <div class="invoice_data_value"></div>
+           <div class="details_data">
+              <table>
+              <tr>
+                  <td class="view">TOTAL</td>
+                 <td>
+                   <span  style="margin-left: 64px;margin-top: 2px;height: 46px;" class="total_data" name="medicine_name"></span>
+                  </td>
+                </tr>
+                <tr>
+                    <td class="view">PAYMENT</td>
+                   <td>
+                     <span  style="margin-left: 64px;margin-top: 2px;height: 46px;"  class="payment_data" name="medicine_name"></span>
+                    </td>
+                  </tr>
+                </tr>
+              </table>
+           </div>
+           <div class="col-sm-12" >
+              <p style="text-align:center;">DEVELOPED BY :CODE BREAKERS</p>
+           </div>
+      </div>
+    </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-success"  onclick="printDiv('printableArea')">Print</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    </div>
+      </div>
 <script type="text/javascript">
+
   $(".submit").click(function(){
     var date=$(".date").val();
     var patient_name=$(".patient_name").val();
@@ -248,11 +307,41 @@
         type:'post',
         data:{'date':date,'invoice_id':invoice_id,'payment':payment,'patient_name':patient_name,'grand_total':grand_total,'medicine_code':medicine_code,'quantity':quantity,'_token': $('input[name=_token]').val()},
         success:function(data){
-             $(".msg").html("<font style='color:green;font-size: 28px;'>Successfully Sale&nbsp;<button><i class='fas fa-print'></i></button></font>");
+             $(".msg").html("<font style='color:green;font-size: 28px;'>Successfully Sale&nbsp;</font><button id='invoice_print' data-toggle='modal' data-target='#myModal' get_value="+invoice_id+"><i class='fa fa-print'></i></button>");
         }
       });
   });
 
-</script>
+$(document).on('click','#invoice_print',function(){
+      var invoice_id=$(this).attr('get_value');
+       $.ajax({
+           url:'/invoice_data',
+           type:'post',
+           data:{'invoice_id':invoice_id,'_token': $('input[name=_token]').val()},
+           success:function(data){
+             console.log(data);
+             $(".invoice_data_value").html(data);
+             var total=$(".total").val();
+             var payment=$(".payment").val();
+             $(".total_data").html(total);
+              $(".payment_data").html(payment);
 
+           }
+
+       });
+  });
+
+</script>
+<script type="text/javascript">
+function printDiv(divName) {
+    var printContents = document.getElementById(divName).innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
+ }
+</script>
 @stop
