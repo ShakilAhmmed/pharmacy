@@ -52,7 +52,8 @@
                         <li><i class="menu-icon fa fa-fort-awesome"></i><a href="
                         /whole_sale">Whole Sale</a></li>
                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/whole_sale_report">Whole Sale Report</a></li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Payments</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/retail_sale">Retail Sale</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/retail_sale/create">Retail Sale Report</a></li>
 
                         </ul>
                     </li>

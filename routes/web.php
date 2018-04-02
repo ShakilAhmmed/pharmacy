@@ -43,3 +43,7 @@ Route::post('/invoice_data','WholeSaleReport@invoice_data');
 
 //Customer
 Route::resource('/customer','CustomerController');
+//Retail Sale
+Route::resource('/retail_sale','RetailSaleController');
+Route::post('/retail_sale','RetailSaleController@retail_sale');
+Route::post('/retail_data','RetailSaleController@retail_data');
