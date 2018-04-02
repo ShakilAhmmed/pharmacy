@@ -1,6 +1,6 @@
 @extends('Admin.index')
-@section('title','Whole Sale')
-@section('breadcrumbs','Whole Sale')
+@section('title','Retail Sale')
+@section('breadcrumbs','Retail Sale')
 @section('main_content')
 
 @if(session('success'))
@@ -35,7 +35,7 @@
       margin-top: 52px;
       float: right;
       border: 1px solid black;
-      height: 205px;
+      height: 260px;
       width: 436px;
   }
   .details_data
@@ -50,7 +50,7 @@
      <!--Form Design Start-->
       <div style="display: inline-flex;">
           <div class="view" style="height: 39px;">DATE</div>
-          <div class="view" style="height: 39px;">PATIENT  NAME</div>
+          <div class="view" style="height: 39px;">CUSTOMER  NAME</div>
       </div>
 
         {{Form::open(['url'=>'/whole_sale'])}}
@@ -120,7 +120,7 @@
                   success:function(data){
                     if(data.total_stock >0)
                     {
-                      row.find(".price").val(data.whole_sell_price);
+                      row.find(".price").val(data.retail_price);
                       $(".msg").html("<font style='color:green;'>"+data.total_stock+" MEDICINE IN STOCK</font>");
                     }
                     else
@@ -151,7 +151,13 @@
             {{Form::date('date',Carbon\Carbon::now(),['class'=>'form-control date','id'=>'date','style'=>'width: 192px;margin-left: 4px;'])}}
         </div>
          <div class="col-sm-2" ><!-- date('Y-m-d H:i:s') -->
-            {{Form::text('patient_name','',['class'=>'form-control patient_name','id'=>'patient_name','style'=>'width: 192px;margin-left: 30px;'])}}
+           @php $customer_array=[''=>'--select--'] @endphp
+           @foreach($customer_data as $customer_data_value)
+             @php
+               $customer_array[$customer_data_value->customer_id]=$customer_data_value->customer_name
+             @endphp
+           @endforeach
+            {{Form::select('customer_name',$customer_array,null,['class'=>'form-control customer_name','id'=>'customer_name','style'=>'width: 192px;margin-left: 30px;'])}}
         </div>
         </div>
         <br>
@@ -219,6 +225,12 @@
                            <input  style="margin-left: -2px;margin-top: 2px;height: 46px;" type="text" class="form-control payment" name="payment" >
                           </td>
                         </tr>
+                        <tr>
+                          <td class="view">DUE</td>
+                         <td>
+                           <input  style="margin-left: -2px;margin-top: 2px;height: 46px;" type="text" class="form-control due" readonly name="due" >
+                          </td>
+                        </tr>
                          <tr>
                           <td class=""></td>
                          <td>
@@ -275,6 +287,9 @@
                   </tr>
                 </tr>
               </table>
+              <div style="margin-left: 145px; margin-top: 16px;font-size: 22px;">
+                <span class="due"></span>
+              </div>
            </div>
            <div class="col-sm-12" >
               <p style="text-align:center;">DEVELOPED BY :CODE BREAKERS</p>
@@ -290,9 +305,11 @@
       </div>
 <script type="text/javascript">
 
+
+
   $(".submit").click(function(){
     var date=$(".date").val();
-    var patient_name=$(".patient_name").val();
+    var customer_name=$(".customer_name").val();
     var grand_total=$('.grand_total').val();
     var invoice_id=$(".invoice_id").val();
     var payment=$(".payment").val();
@@ -303,9 +320,9 @@
          quantity.push($('.quantity').val());
      });
       $.ajax({
-        url:'/sale',
+        url:'/retail_sale',
         type:'post',
-        data:{'date':date,'invoice_id':invoice_id,'payment':payment,'patient_name':patient_name,'grand_total':grand_total,'medicine_code':medicine_code,'quantity':quantity,'_token': $('input[name=_token]').val()},
+        data:{'date':date,'invoice_id':invoice_id,'payment':payment,'customer_name':customer_name,'grand_total':grand_total,'medicine_code':medicine_code,'quantity':quantity,'_token': $('input[name=_token]').val()},
         success:function(data){
              $(".msg").html("<font style='color:green;font-size: 28px;'>Successfully Sale&nbsp;</font><button id='invoice_print' data-toggle='modal' data-target='#myModal' get_value="+invoice_id+"><i class='fa fa-print'></i></button>");
         }
@@ -315,7 +332,7 @@
 $(document).on('click','#invoice_print',function(){
       var invoice_id=$(this).attr('get_value');
        $.ajax({
-           url:'/invoice_data',
+           url:'/retail_data',
            type:'post',
            data:{'invoice_id':invoice_id,'_token': $('input[name=_token]').val()},
            success:function(data){
@@ -323,6 +340,14 @@ $(document).on('click','#invoice_print',function(){
              $(".invoice_data_value").html(data);
              var total=$(".total").val();
              var payment=$(".payment").val();
+             var due=parseInt(total)-parseInt(payment);
+             if(due > 0)
+             {
+                $(".due").html('<font color="red">You Have '+due+' Tk Due</font>');
+             }
+             else {
+                 $(".due").html('<font color="green">You Have No Due</font>');
+             }
              $(".total_data").html(total);
               $(".payment_data").html(payment);
 
@@ -330,7 +355,12 @@ $(document).on('click','#invoice_print',function(){
 
        });
   });
-
+$(".payment").keyup(function(){
+    var grand_total=$(".grand_total").val();
+    var pay=$(this).val();
+    var due=parseInt(grand_total)-parseInt(pay);
+    $(".due").val(parseInt(due));
+});
 </script>
 <script type="text/javascript">
 function printDiv(divName) {
