@@ -76,7 +76,7 @@ class RetailSaleController extends Controller
              $table.="<p>INVOICE ID:</p>";
            $table.="</div>";
            $table.="<div class=\"col-sm-6\">";
-              $table.="<p>$invoice_data->invoice_id</p>";
+              $table.="<p class='invoice_id'>$invoice_data->invoice_id</p>";
            $table.="</div>";
        $table.="</div>";
        $table.="<div class=\"col-sm-12\" style=\"margin-left: -14px;\">";
@@ -131,6 +131,12 @@ class RetailSaleController extends Controller
 
          $table.="</table>";
          echo $table;
+    }
+
+    public function retail_sale_pay(Request $request)
+    {
+      return RetailSaleChildModel::where('invoice_id',$request->invoice_id)->update(['payment'=>$request->payment]);
+
     }
 
     /**

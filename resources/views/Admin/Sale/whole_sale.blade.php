@@ -121,11 +121,11 @@
                     if(data.total_stock >0)
                     {
                       row.find(".price").val(data.whole_sell_price);
-                      $(".msg").html("<font style='color:green;'>"+data.total_stock+" MEDICINE IN STOCK</font>");
+                      $(".msg").html("<font style='color:green;font-size: 30px;'>"+data.total_stock+" MEDICINE IN STOCK</font>");
                     }
                     else
                     {
-                      $(".msg").html("<font style='color:red;'>MEDICINE IS OUT OF STOCK</font>");
+                      $(".msg").html("<font style='color:red;font-size: 30px;'>MEDICINE IS OUT OF STOCK</font>");
                     }
                   }
                });
