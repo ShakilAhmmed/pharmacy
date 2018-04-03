@@ -81,6 +81,13 @@ class PurcaseController extends Controller
         }
     }
 
+    public function stock_report($name)
+    {
+       $report_data=PurcaseModel::where('medicine_code',$name)->get();
+       $stock_data=StockModel::where('medicine_code',$name)->first();
+       return view('Admin.Purcase.medicine_wise_stock',['report_data'=>$report_data,'stock_data'=>$stock_data]);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -112,9 +119,9 @@ class PurcaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
+
     }
- 
+
 
    public function purcase_update(Request $request)
    {

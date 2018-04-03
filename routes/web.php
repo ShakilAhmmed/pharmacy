@@ -33,6 +33,8 @@ Route::post('/medicine_data','PurcaseController@medicine');
 Route::post('/medicine_name','PurcaseController@medicine_name');
 Route::post('/purcase_update','PurcaseController@purcase_update');
 Route::get('/rest_report','PurcaseController@rest_report');
+//MEDICINE WISE PURCASE REPORT
+  Route::get('/stock_report/{name}','PurcaseController@stock_report');
 //Sale
 Route::resource('/whole_sale','WholeSaleController');
 Route::resource('/whole_sale_report','WholeSaleReport');
@@ -47,3 +49,4 @@ Route::resource('/customer','CustomerController');
 Route::resource('/retail_sale','RetailSaleController');
 Route::post('/retail_sale','RetailSaleController@retail_sale');
 Route::post('/retail_data','RetailSaleController@retail_data');
+Route::post('/retail_sale_pay','RetailSaleController@retail_sale_pay');

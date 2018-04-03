@@ -131,6 +131,77 @@
     </div>
       </div>
 
+
+  <!-- for-edit -->
+      <div id="myModal2" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+
+          <div class="modal-content invoice"  style="width: 765px;">
+              <div id="printableArea">
+            <div class="modal-body">
+               <div class="col-sm-12">
+                 <div class="col-sm-6">
+                  <h3 style="font-family: initial;font-style: inherit;font-size:42px;">INVOICE</h3>
+                </div>
+                <div class="col-sm-6">
+                  <img src="{{asset('admin_asset/images/blood.png')}}" style="margin-top: -69px;float: right;">
+                </div>
+               </div>
+               <div class="col-sm-12"  style="margin-top: -78px;">
+                    <p style="font-size: 20px;">BANGLADESH MEDICIAL HALL</p>
+               </div>
+               <div class="col-sm-12">
+                    <p style="font-size: 13px;margin-top: -53px;">ADDRESS: UKIL PARA, FENI BANGLADESH</p>
+               </div>
+               <br>
+               <div class="invoice_data_value"></div>
+                 <div class="details">
+                    <table>
+                    <tr>
+                        <td class="view">TOTAL</td>
+                       <td>
+                         <span  style="margin-left: 64px;margin-top: 2px;height: 46px;" class="total_data" name="medicine_name"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                          <td class="view">PAYMENT</td>
+                         <td>
+                           <span  style="margin-left: 64px;margin-top: 2px;height: 46px;"  class="payment_data" name="medicine_name"></span>
+                          </td>
+                       </tr>
+                       <tr>
+                           <td class="view">PAY</td>
+                          <td>
+                             <input type="text" class="form-control now_pay"/>
+                           </td>
+                       </tr>
+                    </table>
+      							<div  style="margin-left: 145px;margin-top: 16px;font-size: 22px;">
+      								<span class="now_due"></span>
+      							</div>
+                    <div  style="margin-left: 145px;margin-top: 16px;font-size: 22px;">
+                      <span class="now_due_msg_one"></span>
+                    </div>
+                    <div  style="margin-left: 145px;margin-top: 16px;font-size: 22px;">
+                      <span class="now_due_msg"></span>
+                    </div>
+                 </div>
+                 <div class="col-sm-12" >
+                    <p style="text-align:center;margin-top: 156px;">DEVELOPED BY :CODE BREAKERS</p>
+                 </div>
+            </div>
+          </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success new_pay">Save</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          </div>
+            </div>
+           <!-- for-edit -->
+
 {{Form::close()}}
 
    <div class="content mt-3">
@@ -165,12 +236,19 @@
 												@php
 									$due=$retail_sale_data_value->grand_total-$retail_sale_data_value->payment
 												@endphp
-                        <td>{{$due}}</td>
+                        <td>
+                          @if($due==0)
+                          <span style="color:green;">No Due</span>
+                         @else
+                           <span style="color:red;">{{$due}}</span>
+                         @endif
+                        </td>
                         <td style="display: inline-flex;">
-             {{Form::submit('View',['class'=>'btn btn-primary invoice_print','data-toggle'=>'modal','data-target'=>'#myModal','get_value'=>"$retail_sale_data_value->invoice_id"])}}
-                      {{Form::open(['url'=>"/whole_sale_report/$retail_sale_data_value->invoice_id",'method'=>'DELETE'])}}
+             {{Form::submit('View',['class'=>'btn btn-success invoice_print','data-toggle'=>'modal','data-target'=>'#myModal','get_value'=>"$retail_sale_data_value->invoice_id"])}}
+                      {{Form::open(['url'=>"/retail_sale/$retail_sale_data_value->invoice_id",'method'=>'DELETE'])}}
                             {{Form::submit('Delete',['class'=>'btn btn-danger','onclick'=>'return checkdelete()'])}}
                       {{Form::close()}}
+                         {{Form::submit('Edit',['class'=>'btn btn-primary invoice_print','data-toggle'=>'modal','data-target'=>'#myModal2','get_value'=>"$retail_sale_data_value->invoice_id"])}}
                         </td>
 												</tr>
 												@endforeach
@@ -186,6 +264,7 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <script type="text/javascript">
      $(document).ready(function(){
+       $(".new_pay").attr('disabled','disabled');
          $(".invoice_print").unbind().click(function(){
              var invoice_id=$(this).attr('get_value');
               $.ajax({
@@ -212,6 +291,47 @@
 
               });
          });
+
+         $(".now_pay").unbind().keyup(function(){
+              $(".new_pay").removeAttr('disabled');
+             var total=$(".total_data").html();
+             var prev_payment=$(".payment_data").html();
+             var now_pay=$(this).val();
+             var now_payment=parseInt(prev_payment)+parseInt(now_pay);
+             var now_due=parseInt(total)-parseInt(now_payment);
+             if(now_due > 0)
+               {
+                  $(".now_due").html('<font color="red">You Have '+now_due+' Tk Due</font>');
+               }
+               else {
+                   $(".now_due").html('<font color="green">You Have No Due</font>');
+               }
+         });
+
+
+         $(".new_pay").unbind().click(function(){
+              var invoice_id=$(".invoice_id").html();
+              var prev_payment=$(".payment_data").html();
+              var now_pay=$(".now_pay").val();
+              var payment=parseInt(prev_payment)+parseInt(now_pay);
+              $.ajax({
+                   url:'/retail_sale_pay',
+                   type:'post',
+             data:{'invoice_id':invoice_id,'payment':payment,'_token': $('input[name=_token]').val()},
+               success:function(data){
+                 if(data)
+                 {
+                   $(".now_due_msg_one").html('<font color="green">Now Paid '+now_pay+' Tk </font>');
+                    $(".now_due_msg").html('<font color="green">Total Paid '+payment+' Tk </font>');
+                    $(".new_pay").attr('disabled','disabled');
+                 }
+               }
+
+              });
+         });
+
+
+
      });
    </script>
    <script type="text/javascript">

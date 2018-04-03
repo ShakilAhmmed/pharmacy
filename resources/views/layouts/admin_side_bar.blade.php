@@ -33,7 +33,7 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/purcase">Purcase</a></li>
                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/purcase/create">Purcase Report</a></li>
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/rest_report">Rest Report</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/rest_report">Due Report</a></li>
                         </ul>
                     </li>
                    <h3 class="menu-title">Stock</h3><!-- /.menu-title -->
@@ -41,7 +41,13 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Stock Report</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/whole_sale/create">Stock</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/whole_sale/create">Stock Priview</a></li>
+                            @php
+                             $medicine_data=DB::table('medicine')->get();
+                            @endphp
+                            @foreach($medicine_data as $medicine_data_value)
+                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/stock_report/{{$medicine_data_value->medicine_code}}">{{$medicine_data_value->medicine_name}}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                     <h3 class="menu-title">Sales</h3><!-- /.menu-title -->
