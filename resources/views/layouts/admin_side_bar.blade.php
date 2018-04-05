@@ -70,8 +70,6 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>User</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/customer">Customer</a></li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Supliers</a></li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Staff</a></li>
                         </ul>
                     </li>
 
@@ -81,7 +79,8 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Expense</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Expense</a></li>
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/expense_catagory">Expense Catagory</a></li>
+                             <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/expense_for">Expense For</a></li>
                         </ul>
                     </li>
 

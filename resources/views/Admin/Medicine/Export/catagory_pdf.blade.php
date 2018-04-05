@@ -29,7 +29,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    
+
                        @foreach($catagory_data as $key=>$catagory_data_value)
                         <tr>
                         <td>{{$key+1}}</td>
