@@ -50,3 +50,8 @@ Route::resource('/retail_sale','RetailSaleController');
 Route::post('/retail_sale','RetailSaleController@retail_sale');
 Route::post('/retail_data','RetailSaleController@retail_data');
 Route::post('/retail_sale_pay','RetailSaleController@retail_sale_pay');
+
+//Expense
+Route::resource('/expense_catagory','ExpenseController');
+//Expense For
+Route::resource('/expense_for','ExpenseFor');
