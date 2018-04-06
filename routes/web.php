@@ -55,3 +55,5 @@ Route::post('/retail_sale_pay','RetailSaleController@retail_sale_pay');
 Route::resource('/expense_catagory','ExpenseController');
 //Expense For
 Route::resource('/expense_for','ExpenseFor');
+//Inventory
+Route::resource('/inventory_report','InventoryReport');

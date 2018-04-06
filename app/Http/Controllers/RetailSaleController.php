@@ -8,6 +8,7 @@ use App\CustomerModel;
 use App\RetailSaleModel;
 use App\RetailSaleChildModel;
 use App\StockModel;
+use Session;
 
 class RetailSaleController extends Controller
 {
@@ -181,6 +182,9 @@ class RetailSaleController extends Controller
      */
     public function destroy($id)
     {
-        //
+      RetailSaleModel::where('invoice_id',$id)->delete();
+      RetailSaleChildModel::where('invoice_id',$id)->delete();
+      Session::flash('success','Invoice Deleted Successfully');
+      return back();
     }
 }
