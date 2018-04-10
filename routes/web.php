@@ -57,3 +57,7 @@ Route::resource('/expense_catagory','ExpenseController');
 Route::resource('/expense_for','ExpenseFor');
 //Inventory
 Route::resource('/inventory_report','InventoryReport');
+//Regular Transaction
+Route::resource('/regular_transaction','RegularTransaction');
+Route::post('/transaction','RegularTransaction@transaction');
+Route::post('/transaction_save','RegularTransaction@transaction_save');
